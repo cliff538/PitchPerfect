@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
 	@IBOutlet weak var recordingInProgress: UILabel!
 	@IBOutlet weak var stopButton: UIButton!
+	@IBOutlet weak var recordButton: UIButton!
 	
 	
 	
@@ -31,9 +32,15 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func recordAudio(sender: UIButton) {
+		// Disable the record button to prevent hitting it twice.
+		recordButton.enabled = false
+		
+		// Show the stop button
 		stopButton.hidden = false
+		
 		//TODO: Show text "recording in progress"
 		recordingInProgress.hidden = false
+		
 		//TODO: Record the user's voice
 		
 		println("in recordAudio")
