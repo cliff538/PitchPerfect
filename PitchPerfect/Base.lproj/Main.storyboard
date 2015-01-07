@@ -84,9 +84,31 @@
                                     <action selector="playSlowAudio:" destination="Tmy-8Y-A0T" eventType="touchUpInside" id="bvg-aN-lve"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ehi-Vu-sfj">
+                                <rect key="frame" x="447" y="103" width="100" height="100"/>
+                                <state key="normal" image="Rabbit-Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playFastAudio:" destination="Tmy-8Y-A0T" eventType="touchUpInside" id="eQ9-lR-jaq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qa9-zN-rvZ">
+                                <rect key="frame" x="275" y="492" width="50" height="50"/>
+                                <state key="normal" image="Stop-Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopAudio:" destination="Tmy-8Y-A0T" eventType="touchUpInside" id="o5N-Iq-exC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="qa9-zN-rvZ" secondAttribute="centerX" id="0dT-QO-ko7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ehi-Vu-sfj" secondAttribute="trailing" constant="37" id="7L0-HB-7ne"/>
+                            <constraint firstItem="U3y-wE-Oe7" firstAttribute="top" secondItem="qa9-zN-rvZ" secondAttribute="bottom" constant="58" id="BoR-9p-ljr"/>
+                            <constraint firstItem="Ehi-Vu-sfj" firstAttribute="top" secondItem="65g-jh-qii" secondAttribute="bottom" constant="39" id="T8T-Cv-JbW"/>
                             <constraint firstItem="K38-aB-J6K" firstAttribute="leading" secondItem="OXo-4r-WHc" secondAttribute="leadingMargin" constant="34" id="coH-EB-qBe"/>
                             <constraint firstItem="K38-aB-J6K" firstAttribute="top" secondItem="65g-jh-qii" secondAttribute="bottom" constant="39" id="jko-di-Get"/>
                         </constraints>
@@ -117,6 +139,7 @@
     </scenes>
     <resources>
         <image name="Microphone" width="100" height="100"/>
+        <image name="Rabbit-Button" width="100" height="100"/>
         <image name="Snail-Button" width="100" height="100"/>
         <image name="Stop-Button" width="50" height="50"/>
     </resources>

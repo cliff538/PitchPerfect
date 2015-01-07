@@ -32,6 +32,7 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func recordAudio(sender: UIButton) {
+		
 		// Disable the record button to prevent hitting it twice.
 		recordButton.enabled = false
 		
