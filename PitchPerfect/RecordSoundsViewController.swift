@@ -33,6 +33,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 	override func viewWillAppear(animated: Bool) {
 		// Hide the stop button
 		stopButton.hidden = true
+		recordButton.enabled = true 
 	}
 
 	@IBAction func recordAudio(sender: UIButton) {
@@ -58,6 +59,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 		// Setup Audio Session.
 		var session = AVAudioSession.sharedInstance()
 		session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
+		session.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker, error: nil) // This puts the audio thru the speaker. Without this line the sound is thru the earpiece of the phone.  
 		
 		// Initialize and prepare the recorder.
 		audioRecorder = AVAudioRecorder(URL: filePath, settings: nil, error: nil)
@@ -90,7 +92,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 		
 		if (segue.identifier == "stopRecording") {
 			let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as PlaySoundsViewController
-			let data = sender as RecordedAudio 
+			let data = sender as RecordedAudio
+			playSoundsVC.receivedAudio = data 
 		}
 	}
 	

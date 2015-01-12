@@ -14,19 +14,28 @@ class PlaySoundsViewController: UIViewController {
 	var audioPlayer:AVAudioPlayer!   // var audioPlayer is being declared here.
 	var receivedAudio:RecordedAudio!
 	
+	var audioEngine:AVAudioEngine!
+	var audioFile:AVAudioFile!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		if var filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
-			var filePathUrl = NSURL.fileURLWithPath(filePath)
-			audioPlayer = AVAudioPlayer(contentsOfURL: filePathUrl, error: nil) // audioPlayer initilized here.
-			audioPlayer.enableRate = true
-			
-		} else {
-			println("The FilePath is empty")
-		}
+// The code block below was for playing the movie quote file for testing.
+//		if var filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
+//			var filePathUrl = NSURL.fileURLWithPath(filePath)
+//			
+//			
+//		} else {
+//			println("The FilePath is empty")
+//		}
 		
-		// Do any additional setup after loading the view.
+		audioPlayer = AVAudioPlayer(contentsOfURL: receivedAudio.filePathURL, error: nil) // audioPlayer initilized here.
+		audioPlayer.enableRate = true
+		
+		audioEngine = AVAudioEngine()
+		audioFile = AVAudioFile(forReading: receivedAudio.filePathURL, error: nil)
+		
+		
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -52,12 +61,43 @@ class PlaySoundsViewController: UIViewController {
 		
 	}
 	
+	@IBAction func playChipmunkAudio(sender: UIButton) {
+		
+			playAudioWithVariablePitch(1000)
+	}
+	
+	
+	func playAudioWithVariablePitch(pitch: Float) {
+		
+		audioPlayer.stop()
+		audioEngine.stop()
+		audioEngine.reset()
+			
+		var audioPlayerNode = AVAudioPlayerNode()
+		audioEngine.attachNode(audioPlayerNode)
+			
+		var changePitchEffect = AVAudioUnitTimePitch()
+		changePitchEffect.pitch = pitch
+		audioEngine.attachNode(changePitchEffect)
+			
+		audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+		audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+			
+		audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+		audioEngine.startAndReturnError(nil)
+			
+		audioPlayerNode.play()
+	}
+		
+	@IBAction func playDarthvaderAudio(sender: UIButton) {
+		
+		playAudioWithVariablePitch(-1000)
+	}
+	
 	
 	@IBAction func stopAudio(sender: UIButton) {
 		
 		audioPlayer.stop()
-		
-		
 	}
 	
 	
