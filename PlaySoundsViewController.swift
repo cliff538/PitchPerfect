@@ -20,7 +20,11 @@ class PlaySoundsViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+<<<<<<< HEAD
 // The code block below was for playing the movie quote file for testing. Movie quote file left in Supporting Files. 
+=======
+// The code block below was for playing the movie quote file for testing. Original movie_quote file left in Supporting Files Folder. 
+>>>>>>> FETCH_HEAD
 //		if var filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
 //			var filePathUrl = NSURL.fileURLWithPath(filePath)
 //			
